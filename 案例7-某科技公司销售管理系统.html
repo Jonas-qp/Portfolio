@@ -5,32 +5,122 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>某科技公司 · 销售管理系统 | 低代码实施案例</title>
 <meta name="description" content="独立低代码实施顾问为某科技公司搭建销售管理系统：客户录入到生产发货全链路打通。基于钉钉宜搭，一人独立交付。">
-<style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;background:#f5f6fa;color:#1a1a2e;line-height:1.7;}.container{max-width:860px;margin:0 auto;padding:20px 16px 40px;}
-.cover{background:linear-gradient(135deg,#6c3483 0%,#a569bd 50%,#c39bd3 100%);color:#fff;border-radius:20px;padding:48px 36px;margin-bottom:32px;text-align:center;}.cover-badge{display:inline-block;background:rgba(255,255,255,0.2);border-radius:20px;padding:6px 18px;font-size:13px;font-weight:600;margin-bottom:16px;letter-spacing:1px;}.cover h1{font-size:28px;font-weight:800;margin-bottom:12px;line-height:1.3;}.cover-subtitle{font-size:15px;opacity:0.88;}
-.tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:20px;}.tag{background:rgba(255,255,255,0.15);border-radius:20px;padding:4px 14px;font-size:12px;font-weight:500;}
-h2{font-size:22px;font-weight:700;margin:36px 0 16px;color:#6c3483;display:flex;align-items:center;gap:10px;}h2::before{content:'';width:4px;height:24px;background:#e74c3c;border-radius:3px;display:inline-block;}h3{font-size:17px;font-weight:600;margin:20px 0 10px;color:#2c3e50;}p{margin-bottom:14px;font-size:15px;color:#444;}
-.pain-list{list-style:none;padding:0;}.pain-list li{background:#fff5f5;border-left:4px solid #e74c3c;padding:14px 18px;margin-bottom:10px;border-radius:0 10px 10px 0;font-size:14.5px;}.pain-list li strong{color:#c0392b;}
-.flow{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;margin:20px 0;padding:20px;background:#ecf0f1;border-radius:14px;font-size:14px;}.flow-step{background:#8e44ad;color:#fff;padding:8px 16px;border-radius:20px;font-weight:600;white-space:nowrap;}.flow-arrow{color:#7f8c8d;font-weight:bold;font-size:16px;}
-.modules{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:16px 0;}.module-card{background:#fff;border:1px solid #e1e8ed;border-radius:14px;padding:16px;text-align:center;transition:transform .2s,box-shadow .2s;}.module-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.08);}.module-icon{font-size:26px;margin-bottom:6px;}.module-name{font-weight:600;font-size:13.5px;color:#2c3e50;}.module-desc{font-size:12px;color:#7f8c8d;margin-top:4px;}
-.screenshot{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.08);margin:20px 0;}.screenshot img{width:100%;display:block;}.screenshot-caption{text-align:center;font-size:13px;color:#7f8c8d;padding:12px;background:#fafbfc;border-top:1px solid #eee;font-style:italic;}
-.value-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:16px 0;}.value-item{background:#eafaf1;border-left:4px solid #27ae60;padding:14px 18px;border-radius:0 10px 10px 0;}.value-item strong{color:#1e8449;display:block;margin-bottom:4px;}.value-item span{font-size:13.5px;color:#555;}
-.footer-author{text-align:center;margin-top:48px;padding:24px;background:#f8f9fa;border-radius:14px;font-size:13.5px;color:#7f8c8d;line-height:1.8;}
-.cta-box{margin:28px 0;padding:28px 24px;border-radius:16px;background:linear-gradient(135deg,#6c3483,#a569bd);color:#fff;text-align:center;}.cta-box .cta-title{font-size:19px;font-weight:700;margin-bottom:10px;}.cta-box .cta-desc{font-size:14px;opacity:.88;line-height:1.8;}</style>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root{ --blue:#2f6bff; --navy:#0a1228; --ink:#1c2333; --mut:#5a6478; --line:#e6eaf2; --bg:#f5f7fc; }
+html{ scroll-behavior:smooth; }
+body{ font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; background:var(--bg); color:var(--ink); line-height:1.72; }
+
+/* nav */
+.nav{ position:sticky; top:0; z-index:50; background:rgba(255,255,255,.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+.nav .in{ max-width:920px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between; }
+.nav .logo{ font-weight:800; font-size:16px; color:var(--navy); }
+.nav .logo span{ color:var(--blue); }
+.nav a.back{ color:var(--blue); text-decoration:none; font-size:14px; font-weight:700; padding:7px 16px; border:1px solid var(--blue); border-radius:999px; }
+.nav a.back:hover{ background:var(--blue); color:#fff; }
+@media(max-width:820px){ .nav a.back{ font-size:13px; padding:6px 12px; } }
+
+/* hero (页头) */
+.hero{ background:linear-gradient(135deg,#0a1228 0%,#15224a 60%,#1d3568 100%); color:#fff; padding:64px 20px 52px; text-align:center; }
+.hero .badge{ display:inline-block; padding:6px 16px; border:1px solid rgba(255,255,255,.3); border-radius:999px; font-size:13px; letter-spacing:1px; margin-bottom:18px; }
+.hero h1{ font-size:34px; font-weight:800; margin-bottom:14px; line-height:1.3; }
+.hero .hero-sub{ font-size:16px; color:rgba(255,255,255,.82); max-width:720px; margin:0 auto; }
+.hero .meta{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:24px; }
+.hero .meta span{ background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2); padding:6px 14px; border-radius:999px; font-size:13px; }
+
+/* wrap */
+.wrap{ max-width:920px; margin:0 auto; padding:42px 20px 60px; }
+
+/* section containers (A: .sec / B: .section) */
+.sec, .section{ margin-top:40px; }
+
+/* headings */
+h2{ font-size:22px; font-weight:800; color:var(--navy); margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+h2::before{ content:""; width:5px; height:22px; background:var(--blue); border-radius:3px; display:inline-block; }
+p{ font-size:15px; color:var(--mut); margin-bottom:12px; line-height:1.75; }
+
+/* lists */
+ul{ padding-left:20px; margin-bottom:14px; }
+li{ font-size:14.5px; color:var(--ink); margin-bottom:6px; }
+
+/* pain */
+.pain{ background:#fff5f5; border-left:4px solid #ef4444; padding:16px 18px; border-radius:0 10px 10px 0; margin:8px 0 16px; font-size:15px; color:#7f1d1d; }
+.pain b{ color:#b91c1c; }
+.pain-list{ list-style:none; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.pain-list li{ background:#fff5f5; border-left:4px solid #ef4444; padding:14px 18px; border-radius:10px; font-size:14px; color:#7f1d1d; }
+.pain-item{ background:#fff5f5; border-left:4px solid #ef4444; padding:16px 18px; border-radius:10px; margin:8px 0; }
+.pain-item strong{ color:#b91c1c; }
+
+/* flow (A: step/arrow, B: flow-box/flow-node/flow-title/flow-arrow/flow-step) */
+.flow{ display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:8px; margin:18px 0; }
+.flow .step, .flow .flow-step{ background:#eff4ff; color:#1d4ed8; border:1px solid #c7d8ff; padding:10px 16px; border-radius:10px; font-size:14px; font-weight:600; }
+.flow .arrow, .flow .flow-arrow{ color:#94a3b8; font-size:20px; font-weight:700; }
+.flow-box{ background:#f7f9ff; border:1px solid var(--line); border-radius:12px; padding:14px 18px; text-align:center; flex:1; min-width:120px; }
+.flow-title{ font-size:12px; color:var(--mut); margin-bottom:6px; }
+.flow-node{ font-weight:600; color:var(--ink); font-size:14px; }
+
+/* feature / module / value cards (unified white card) */
+.cards, .modules, .module-grid, .mod-grid, .value-grid, .val{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; margin-top:14px; }
+.card, .module-card, .mod-card, .v, .value-item, .pain-item, .cmp{ background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
+.card h3, .module-name, .module-card strong, .mod-card strong, .v h3, .value-item strong{ font-size:15px; color:var(--navy); margin-bottom:6px; display:block; }
+.card p, .module-desc, .mod-card span, .v p, .value-item span{ font-size:13.5px; color:var(--mut); }
+.module-icon{ font-size:22px; margin-bottom:6px; }
+.cmp{ margin-top:14px; }
+
+/* screenshots */
+.shot, .screenshot{ margin:18px 0; background:#fff; border:1px solid var(--line); border-radius:14px; padding:14px; }
+.shot img, .screenshot img{ width:100%; border:1px solid var(--line); border-radius:10px; display:block; }
+.cap, .screenshot-caption{ font-size:13px; color:var(--mut); margin-top:10px; text-align:center; }
+
+/* note */
+.note{ font-size:13px; color:#94a3b8; margin-top:14px; font-style:italic; }
+
+/* tables */
+table{ width:100%; border-collapse:collapse; margin:16px 0; font-size:14px; background:#fff; border-radius:12px; overflow:hidden; }
+th, td{ border:1px solid var(--line); padding:10px 12px; text-align:left; }
+th{ background:#f0f4ff; color:var(--navy); }
+
+/* leftover tag chips (defensive) */
+.tags{ display:flex; flex-wrap:wrap; gap:8px; }
+.tag{ background:#eef3ff; color:#2f5bd0; padding:5px 12px; border-radius:14px; font-size:13px; }
+
+/* CTA */
+.cta-section{ margin-top:50px; background:var(--navy); color:#fff; border-radius:18px; padding:40px 28px; text-align:center; }
+.cta-section h2{ color:#fff; justify-content:center; }
+.cta-section h2::before{ display:none; }
+.cta-section p{ color:rgba(255,255,255,.8); font-size:15px; }
+.cta-section .btns{ margin-top:18px; }
+.btn{ display:inline-block; padding:12px 26px; border-radius:999px; font-size:15px; font-weight:700; text-decoration:none; }
+.btn-p{ background:var(--blue); color:#fff; }
+.btn-g{ background:transparent; color:#fff; border:1px solid rgba(255,255,255,.4); }
+
+@media(max-width:820px){
+  .pain-list, .cards, .modules, .module-grid, .mod-grid, .value-grid, .val{ grid-template-columns:1fr; }
+  .hero h1{ font-size:26px; }
+  .wrap{ padding:32px 18px 50px; }
+}
+</style>
 </head>
 <body>
-<div class="container">
-<div class="cover">
-  <div class="cover-badge">客户案例</div>
-  <h1>某科技公司<br>销售管理系统</h1>
-  <p class="cover-subtitle">把销售全流程从"人盯人+Excel"变成数字化闭环管理</p>
-  <div class="tags">
-    <span class="tag">科技/销售</span>
+
+  <nav class="nav">
+    <div class="in">
+      <div class="logo">独立低代码实施<span>顾问</span></div>
+      <a class="back" href="index.html">← 返回作品集</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="badge">客户案例</div>
+    <h1>某科技公司<br>销售管理系统</h1>
+    <p class="hero-sub">把销售全流程从"人盯人+Excel"变成数字化闭环管理</p>
+    <div class="meta"><span class="tag">科技/销售</span>
     <span class="tag">钉钉宜搭</span>
     <span class="tag">销售管理</span>
-    <span class="tag">一人独立交付</span>
-  </div>
-</div>
+    <span class="tag">一人独立交付</span></div>
+  </header>
 
+  <div class="wrap">
 <h2>业务背景</h2>
 <p>对于一家科技型公司，<strong>销售是生命线</strong>。但传统销售管理模式依赖<strong>微信群沟通+Excel表格+口头汇报</strong>：</p>
 <ul class="pain-list">
@@ -102,15 +192,17 @@ h2{font-size:22px;font-weight:700;margin:36px 0 16px;color:#6c3483;display:flex;
   <div class="value-item"><strong>✅ 产销协同化</strong><span>销售签单自动联动生产排程和物料请购</span></div>
   <div class="value-item"><strong>✅ 数据决策化</strong><span>多维度报表支撑经营决策，告别手工拼表</span></div>
 </div>
+  </div>
 
-<div class="cta-box">
-  <div class="cta-title">需要搭建类似的系统？</div>
-  <div class="cta-desc">我是一名独立低代码实施顾问，可承接从需求调研、报价、实施到交付的全流程。<br>有需求欢迎在抖音 / 小红书主页私信我交流。</div>
-</div>
+  <div class="wrap">
+    <section class="cta-section">
+      <h2>需要搭建类似的系统？</h2>
+      <p>我是一名独立低代码实施顾问，可承接从需求调研、报价、实施到交付的全流程。<br>有需求欢迎在抖音 / 小红书主页<b>私信</b>我交流。</p>
+      <div class="btns">
+        <a class="btn btn-p" href="index.html">← 返回作品集</a>
+      </div>
+          </section>
+  </div>
 
-<div class="footer-author">
-  案例 · 某科技公司销售管理系统（匿名）｜ 本项目由企业签约，本人作为唯一实施人独立完成需求调研、搭建与交付全流程。
-</div>
-</div>
 </body>
 </html>
